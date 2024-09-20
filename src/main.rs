@@ -10,6 +10,7 @@ use crate::menu::Menu;
 use colored::*;
 use fs::FileCreate;
 use git::Git;
+use path::Directory;
 use std::{env, error::Error, path::PathBuf, process::exit};
 use utils::binary_name;
 
@@ -35,8 +36,8 @@ fn main() -> Result<(), Box<dyn Error>> {
         exit(1);
       }
 
-      // // ------- Create root workspace -------
-      // Directory::create(&root)?;
+      // ------- Create root workspace -------
+      Directory::create(&root)?;
 
       // ------- Creates the workspace Cargo.toml -------
       FileCreate {
@@ -44,8 +45,8 @@ fn main() -> Result<(), Box<dyn Error>> {
       }
       .new(&root, "Cargo.toml")?;
 
-      // // ------- Create .cargo folder -------
-      // Directory::create(&root.join(".cargo"))?;
+      // ------- Create .cargo folder -------
+      Directory::create(&root.join(".cargo"))?;
 
       // ------- Creates the `cargo` configuration file -------
       FileCreate {

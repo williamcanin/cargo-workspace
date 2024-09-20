@@ -24,15 +24,15 @@ impl Directory {
         },
       }
     } else {
-      Ok(false)
-      // Err(
-      //   format!(
-      //     "{} Directory `{}` already exists",
-      //     " Error: ".on_red(),
-      //     path.to_str().unwrap()
-      //   )
-      //   .into(),
-      // )
+      // Ok(false)
+      Err(
+        format!(
+          "{} Directory `{}` already exists",
+          " Error: ".on_red(),
+          path.to_str().unwrap()
+        )
+        .into(),
+      )
     }
   }
 }
