@@ -46,12 +46,12 @@ jobs:
       - name: Build Linux Binary x64
         run: |
           cargo build --release --target x86_64-unknown-linux-gnu
-          cp target/x86_64-unknown-linux-gnu/release/cargo-workspace release/cargo-workspace-x64
+          cp target/x86_64-unknown-linux-gnu/release/cargo-workspace release/cargo-workspace-x86_64-linux
 
       - name: Build Linux Binary x32
         run: |
           cargo build --release --target i686-unknown-linux-gnu
-          cp target/i686-unknown-linux-gnu/release/cargo-workspace release/cargo-workspace-x32
+          cp target/i686-unknown-linux-gnu/release/cargo-workspace release/cargo-workspace-i686-linux
 
       - name: Upload Linux Binaries
         uses: actions/upload-artifact@v3
@@ -63,7 +63,7 @@ jobs:
         if: github.event_name == 'release'
         uses: softprops/action-gh-release@v1
         with:
-          files: ./release/cargo-workspace-x64
+          files: ./release/cargo-workspace-x86_64-linux
         env:
           GITHUB_TOKEN: ${{ secrets.CARGO_WORKSPACE_TOKEN }}
 
@@ -71,6 +71,6 @@ jobs:
         if: github.event_name == 'release'
         uses: softprops/action-gh-release@v1
         with:
-          files: ./release/cargo-workspace-x32
+          files: ./release/cargo-workspace-i686-linux
         env:
           GITHUB_TOKEN: ${{ secrets.CARGO_WORKSPACE_TOKEN }}
