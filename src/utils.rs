@@ -1,5 +1,10 @@
 pub fn binary_name() -> String {
-  let bin_path = std::env::current_exe().unwrap();
-  let bin_name = bin_path.file_name().unwrap().to_str().unwrap().to_string();
-  bin_name.split_once(".").unwrap().0.to_string()
+  let file_path = std::env::current_exe().unwrap();
+  let name = file_path.file_name().unwrap().to_str().unwrap().to_string();
+
+  if let Some((part0, _)) = name.split_once('.') {
+    part0.to_string()
+  } else {
+    name
+  }
 }
