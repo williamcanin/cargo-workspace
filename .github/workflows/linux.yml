@@ -19,6 +19,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Install Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install build-essential
+
       - name: Set up Rust
         uses: actions-rs/toolchain@v1
         with:
