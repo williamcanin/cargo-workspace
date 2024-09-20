@@ -1,0 +1,21 @@
+[package]
+name = "cargo-workspace"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+colored = "2.1.0"
+
+# ==== PROFILES SETTINGS ====
+
+# >> [ Development ]
+[profile.dev.package."*"]
+opt-level = 0
+incremental = true
+
+# >> [ Release ]
+[profile.release]
+opt-level = 3
+codegen-units = 1
+debug = false
+strip = true
