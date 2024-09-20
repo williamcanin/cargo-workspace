@@ -17,7 +17,7 @@ With **Cargo Workspace** you avoid manually creating files such as `Cargo.toml` 
 
 ## Usage
 
-You can clone the repository and compile the project if you have Rust installed, or download the already compiled binary from [tags]().
+You can clone the repository and compile the project if you have Rust installed, or download the already compiled binary from [releases](https://github.com/williamcanin/cargo-workspace/releases).
 
 To compile locally do:
 
