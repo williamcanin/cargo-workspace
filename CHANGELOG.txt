@@ -6,6 +6,9 @@ Changelog
 ==================
 
 * Fixing directory creation error.
+* Changing the Path parameter to PathBuf
+* Changing the behavior of the "create" method of the Directory struct.
+  Now instead of returning an Err, it returns a boolean.
 -------------------------------------------------------------------------------
 ::> version 0.1.0 -
 ===================
