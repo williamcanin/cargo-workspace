@@ -2,6 +2,12 @@ Changelog
 ============
 
 -------------------------------------------------------------------------------
+::> version 0.1.2 -
+==================
+
+* Fixing gitignore not being created error.
+* Removing folder creation within the file creation module.
+-------------------------------------------------------------------------------
 ::> version 0.1.1 -
 ==================
 
