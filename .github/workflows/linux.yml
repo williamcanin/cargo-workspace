@@ -43,7 +43,7 @@ jobs:
           cp target/i686-unknown-linux-gnu/release/cargo-workspace ./release/cargo-workspace-x32
 
       - name: Upload Linux Binaries
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: linux-binaries
           path: release/*
