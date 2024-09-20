@@ -1,6 +1,6 @@
 #[cfg(test)]
 mod file {
-  use std::{error::Error, fs::remove_dir_all, path::Path};
+  use std::{error::Error, fs::remove_dir_all, path::PathBuf};
 
   use crate::fs::FileCreate;
 
@@ -10,11 +10,11 @@ mod file {
     let file_create = FileCreate {
       content: String::from(content),
     };
-    let path = Path::new("test_file_success");
+    let path = PathBuf::from("test_file_success");
     if path.exists() {
       remove_dir_all(&path)?;
     }
-    let result = file_create.new(path, "file.txt");
+    let result = file_create.new(&path, "file.txt");
     assert_eq!(result?, true);
     assert!(path.join("file.txt").exists());
     remove_dir_all(path)?;
@@ -29,7 +29,7 @@ mod file {
       content: String::from(content),
     };
 
-    let path = Path::new("test_file_failure");
+    let path = PathBuf::from("test_file_failure");
     let filename = "invalid/name.txt"; // Name invalid
 
     if path.exists() {
@@ -37,7 +37,7 @@ mod file {
     }
 
     let result = std::panic::catch_unwind(|| {
-      file_create.new(path, filename).unwrap();
+      file_create.new(&path, filename).unwrap();
     });
     assert!(result.is_err());
     remove_dir_all(&path).unwrap();

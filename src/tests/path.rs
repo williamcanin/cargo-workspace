@@ -1,7 +1,6 @@
 #[cfg(test)]
 mod directory {
   use crate::path::Directory;
-  use colored::Colorize;
   use std::fs::{create_dir_all, remove_dir_all};
   use std::path::PathBuf;
 
@@ -24,15 +23,27 @@ mod directory {
     }
     create_dir_all(&path).unwrap();
     let result = Directory::create(&path);
-    assert!(result.is_err());
-    assert_eq!(
-      result.unwrap_err().to_string(),
-      format!(
-        "{} Directory `{}` already exists",
-        " Error: ".on_red(),
-        path.to_str().unwrap()
-      )
-    );
+    match result {
+      Ok(value) => match value {
+        true => assert!(false),
+        false => assert!(true),
+      },
+      Err(_) => assert!(false),
+    }
+
+    // if !result.unwrap() {
+    //   assert!(true)
+    // }
+
+    // assert!(result.is_err());
+    // assert_eq!(
+    //   result.unwrap_err().to_string(),
+    //   format!(
+    //     "{} Directory `{}` already exists",
+    //     " Error: ".on_red(),
+    //     path.to_str().unwrap()
+    //   )
+    // );
     remove_dir_all(&path).unwrap();
   }
 

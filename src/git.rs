@@ -1,14 +1,14 @@
 use colored::Colorize;
 
 use crate::fs::FileCreate;
-use std::{error::Error, path::Path, process::Command};
+use std::{error::Error, path::PathBuf, process::Command};
 
 pub struct Git {
   pub content: String,
 }
 
 impl Git {
-  fn create_gitignore(&self, path: &Path, content: String) -> Result<(), Box<dyn Error>> {
+  fn create_gitignore(&self, path: &PathBuf, content: String) -> Result<(), Box<dyn Error>> {
     FileCreate { content }.new(path, ".gitignore")?;
     Ok(())
   }
@@ -25,7 +25,7 @@ impl Git {
     }
   }
 
-  pub fn init(&self, path: &Path) -> Result<(), Box<dyn Error>> {
+  pub fn init(&self, path: &PathBuf) -> Result<(), Box<dyn Error>> {
     if !self.is_installed() {
       return Ok(());
     }

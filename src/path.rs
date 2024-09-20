@@ -1,10 +1,10 @@
 use colored::Colorize;
-use std::{error::Error, fs::create_dir_all, path::Path};
+use std::{error::Error, fs::create_dir_all, path::PathBuf};
 
 pub struct Directory;
 
 impl Directory {
-  pub fn create(path: &Path) -> Result<bool, Box<dyn Error>> {
+  pub fn create(path: &PathBuf) -> Result<bool, Box<dyn Error>> {
     if !path.exists() {
       match create_dir_all(path) {
         Ok(_) => Ok(true),
@@ -24,14 +24,15 @@ impl Directory {
         },
       }
     } else {
-      Err(
-        format!(
-          "{} Directory `{}` already exists",
-          " Error: ".on_red(),
-          path.to_str().unwrap()
-        )
-        .into(),
-      )
+      Ok(false)
+      // Err(
+      //   format!(
+      //     "{} Directory `{}` already exists",
+      //     " Error: ".on_red(),
+      //     path.to_str().unwrap()
+      //   )
+      //   .into(),
+      // )
     }
   }
 }

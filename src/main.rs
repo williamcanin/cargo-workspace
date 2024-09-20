@@ -10,8 +10,7 @@ use crate::menu::Menu;
 use colored::*;
 use fs::FileCreate;
 use git::Git;
-use path::Directory;
-use std::{env, error::Error, path::Path, process::exit};
+use std::{env, error::Error, path::PathBuf, process::exit};
 use utils::binary_name;
 
 fn main() -> Result<(), Box<dyn Error>> {
@@ -25,12 +24,10 @@ fn main() -> Result<(), Box<dyn Error>> {
   match menu {
     Some(folder) => {
       let folder = folder.trim();
-
-      // ------- Create path workspace -------
-      Directory::create(Path::new(folder))?;
+      let root = PathBuf::from(folder);
 
       // ------- Ignore if workspace already exists -------
-      if Path::new(&folder).join("Cargo.toml").exists() {
+      if root.join("Cargo.toml").exists() {
         println!(
           "{} The workspace `{folder}` already exists",
           " Error: ".on_red()
@@ -38,23 +35,29 @@ fn main() -> Result<(), Box<dyn Error>> {
         exit(1);
       }
 
+      // // ------- Create root workspace -------
+      // Directory::create(&root)?;
+
       // ------- Creates the workspace Cargo.toml -------
       FileCreate {
         content: String::from(constants::CARGO_TOML_CONTENT),
       }
-      .new(&Path::new(&folder), "Cargo.toml")?;
+      .new(&root, "Cargo.toml")?;
+
+      // // ------- Create .cargo folder -------
+      // Directory::create(&root.join(".cargo"))?;
 
       // ------- Creates the `cargo` configuration file -------
       FileCreate {
         content: String::from(constants::CARGO_CONFIG_CONTENT),
       }
-      .new(&Path::new(&folder).join(".cargo"), "config.toml")?;
+      .new(&root.join(".cargo"), "config.toml")?;
 
       // ------- Start `git init` in the workspace -------
       Git {
         content: String::from(constants::GIT_IGNORE_CONTENT),
       }
-      .init(&Path::new(&folder))?;
+      .init(&root)?;
 
       println!("    {} `{folder}` workspace skeleton", "Creating".green());
     }
