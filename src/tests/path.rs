@@ -38,8 +38,8 @@ mod directory {
 
   #[test]
   fn create_invalid_name() {
-    // let path = PathBuf::from("test_dir/invalid\0name");
-    let path = PathBuf::from("test_dir_invalid*<");
+    let path = PathBuf::from("test_dir/invalid\0name");
+    // let path = PathBuf::from("test_dir_invalid*<");
     let result = std::panic::catch_unwind(|| {
       Directory::create(&path).unwrap();
     });
