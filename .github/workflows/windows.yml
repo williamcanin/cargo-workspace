@@ -52,20 +52,14 @@ jobs:
 
       - name: Upload Windows Binary to Release
         uses: softprops/action-gh-release@v1
+        with:
+          files: ./release/cargo-workspace-x64.exe
         env:
           GITHUB_TOKEN: ${{ secrets.CARGO_WORKSPACE_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./release/cargo-workspace-x64.exe
-          asset_name: cargo-workspace-x64.exe
-          asset_content_type: application/octet-stream
 
       - name: Upload x32 Binary to Release
         uses: softprops/action-gh-release@v1
+        with:
+          files: ./release/cargo-workspace-x32.exe
         env:
           GITHUB_TOKEN: ${{ secrets.CARGO_WORKSPACE_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./release/cargo-workspace-x32.exe
-          asset_name: cargo-workspace-x32.exe
-          asset_content_type: application/octet-stream
