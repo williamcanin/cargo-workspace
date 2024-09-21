@@ -1,4 +1,4 @@
-use colored::Colorize;
+use colored::*;
 use std::{error::Error, fs::create_dir_all, path::PathBuf};
 
 pub struct Directory;
@@ -24,7 +24,6 @@ impl Directory {
         },
       }
     } else {
-      // Ok(false)
       Err(
         format!(
           "{} Directory `{}` already exists",
