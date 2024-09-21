@@ -26,14 +26,6 @@ mod directory {
     create_dir_all(&path).unwrap();
     let result = Directory::create(&path);
 
-    // match result {
-    //   Ok(value) => match value {
-    //     true => assert!(false),
-    //     false => assert!(true),
-    //   },
-    //   Err(_) => assert!(false),
-    // }
-
     assert!(result.is_err());
     assert_eq!(
       result.unwrap_err().to_string(),
@@ -49,7 +41,6 @@ mod directory {
   #[test]
   fn create_invalid_name() {
     let path = PathBuf::from("test_dir/invalid\0name");
-    // let path = PathBuf::from("test_dir_invalid*<");
     let result = std::panic::catch_unwind(|| {
       Directory::create(&path).unwrap();
     });
