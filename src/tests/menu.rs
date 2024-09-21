@@ -10,7 +10,7 @@ mod run {
       String::from("project"),
     ];
 
-    let menu_instance = Menu { args: &args };
+    let menu_instance = Menu { args: args };
 
     let result = menu_instance.new();
     assert_eq!(result, Some("project".to_string()));
@@ -19,7 +19,7 @@ mod run {
   #[test]
   fn without_path_argument() {
     let args = vec![String::from("cargo-workspace"), String::from("new")];
-    let menu_instance = Menu { args: &args };
+    let menu_instance = Menu { args: args };
     let result = menu_instance.new();
     assert_eq!(result, None);
   }
@@ -27,7 +27,7 @@ mod run {
   #[test]
   fn no_arguments() {
     let args = vec![String::from("cargo-workspace")];
-    let menu_instance = Menu { args: &args };
+    let menu_instance = Menu { args: args };
 
     let result = menu_instance.new();
     assert_eq!(result, None);
@@ -39,7 +39,7 @@ mod run {
       String::from("cargo-workspace"),
       String::from("unknown_option"),
     ];
-    let menu_instance = Menu { args: &args };
+    let menu_instance = Menu { args: args };
 
     let result = menu_instance.new();
     assert_eq!(result, None);
