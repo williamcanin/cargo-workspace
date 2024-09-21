@@ -1,4 +1,4 @@
-use colored::Colorize;
+use colored::*;
 
 use crate::fs::FileCreate;
 use std::{error::Error, path::PathBuf, process::Command};
@@ -36,17 +36,18 @@ impl Git {
       Ok(output) => {
         if output.status.success() {
           self.create_gitignore(path, self.content.clone())?;
+          Ok(())
+        } else {
+          Err(format!("{} Unexpected git command", " Error: ".on_red(),).into())
         }
       }
-      Err(err) => {
-        println!(
-          "{} Failed to execute `git init` command: {}",
-          " Error: ".on_red(),
-          err
-        );
-      }
+      Err(_) => Err(
+        format!(
+          "{} Failed to execute `git init` command:",
+          " Error: ".on_red()
+        )
+        .into(),
+      ),
     }
-
-    Ok(())
   }
 }
