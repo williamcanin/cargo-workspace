@@ -31,19 +31,27 @@ opt-level = 3
 codegen-units = 1
 debug = false"#;
 
-pub const GIT_IGNORE_CONTENT: &str = r#"# Windows taken from: https://github.com/github/gitignore/blob/master/Global/Windows.gitignore
-# ----------------------------------------------------------------------------------------------
+pub const GIT_IGNORE_CONTENT: &str = r#"# Windows taken from:
+# https://github.com/github/gitignore/blob/master/Global/Windows.gitignore
+# -------------------------------------------------------------------------
 Desktop.ini
 ehthumbs.db
 Thumbs.db
 $RECYCLE.BIN/
 
 # Linux
-# ----------------------------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 *~
 
+# VsCode
+# -------------------------------------------------------------------------
+/.vscode
+
+# JetBrains
+# -------------------------------------------------------------------------
+/.idea
+
 # Rust taken https://github.com/github/gitignore/blob/main/Rust.gitignore
-# ----------------------------------------------------------------------------------------------
-**/*/target
-**/*/*.pdb
-**/*/*.lock"#;
+# -------------------------------------------------------------------------
+/target
+Cargo.lock"#;
