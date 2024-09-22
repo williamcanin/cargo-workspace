@@ -1,6 +1,28 @@
+# Windows taken from:
+# https://github.com/github/gitignore/blob/master/Global/Windows.gitignore
+# -------------------------------------------------------------------------
+Desktop.ini
+ehthumbs.db
+Thumbs.db
+$RECYCLE.BIN/
+
+# Linux
+# -------------------------------------------------------------------------
+*~
+
+# VsCode
+# # -------------------------------------------------------------------------
+/.vscode
+
+# JetBrains
+# # -------------------------------------------------------------------------
+/.idea
+
+# Rust taken https://github.com/github/gitignore/blob/main/Rust.gitignore
+# # -------------------------------------------------------------------------
 /target
 Cargo.lock
+
+# Backups
+# # -------------------------------------------------------------------------
 *.bak
-*~
-/.vscode
-/.idea
